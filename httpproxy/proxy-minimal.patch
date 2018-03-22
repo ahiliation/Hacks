@@ -1,0 +1,41 @@
+--- proxy-minimal.c	2017-09-29 01:15:33.867080498 +0530
++++ beautifulwork/hacks/proxy/proxy-minimal.c	2017-09-29 00:54:37.977656340 +0530
+@@ -21,7 +21,7 @@
+ struct sockaddr_in addr_in,cli_addr,serv_addr;
+ struct hostent* host;
+ int sockfd,newsockfd;
+-   
++ 
+ if(argc<2)
+ error("./proxy <port_no>");
+   
+@@ -77,6 +77,7 @@
+    
+ for(i=7;i<strlen(t2);i++)
+ {
++  printf("%c",t2[i]); 
+ if(t2[i]==':')
+ {
+ flag=1;
+@@ -121,17 +122,17 @@
+    
+ sockfd1=socket(AF_INET,SOCK_STREAM,IPPROTO_TCP);
+ newsockfd1=connect(sockfd1,(struct sockaddr*)&host_addr,sizeof(struct sockaddr));
+-sprintf(buffer,"\nConnected to %s  IP - %s\n",t2,inet_ntoa(host_addr.sin_addr));
++sprintf(buffer,"\nConnected to %s  IP - %s\n",t2,inet_ntoa(host_addr.sin_addr)); 
+ if(newsockfd1<0)
+ error("Error in connecting to remote server");
+    
+-printf("\n%s\n",buffer);
++/* printf("\n%s\n",buffer); */
+ //send(newsockfd,buffer,strlen(buffer),0);
+ bzero((char*)buffer,sizeof(buffer));
+ if(temp!=NULL)
+-sprintf(buffer,"GET /%s %s\r\nHost: %s\r\nConnection: close\r\n\r\n",temp,t3,t2);
++  sprintf(buffer,"GET /%s %s\r\nHost: %s\r\nConnection: close\r\n\r\n",temp,t3,t2); 
+ else
+-sprintf(buffer,"GET / %s\r\nHost: %s\r\nConnection: close\r\n\r\n",t3,t2);
++  sprintf(buffer,"GET / %s\r\nHost: %s\r\nConnection: close\r\n\r\n",t3,t2); 
+  
+  
+ n=send(sockfd1,buffer,strlen(buffer),0);

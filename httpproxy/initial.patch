@@ -1,0 +1,21 @@
+--- proxy.py	2017-09-27 22:31:21.743503652 +0530
++++ /usr/local/bin/proxy.py	2017-09-27 20:53:35.741677775 +0530
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/python
+ # -*- coding: utf-8 -*-
+ """
+     proxy.py
+@@ -26,7 +26,11 @@
+ import select
+ 
+ logger = logging.getLogger(__name__)
+-
++print type(logger)
++print dir(logger)
++print "\n"
++print dir(logging)
++print type(logging)
+ # True if we are running on Python 3.
+ PY3 = sys.version_info[0] == 3
+ 
